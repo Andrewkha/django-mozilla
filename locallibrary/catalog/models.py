@@ -31,6 +31,11 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    def display_genre(self):
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = 'Genre'
+
     def get_absolute_url(self):
         return reverse('book-detail', args=[str(self.id)])
 
@@ -40,7 +45,7 @@ class BookInstance(models.Model):
                                                                           'whole library')
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
     imprint = models.CharField(max_length=200)
-    due_back = models.DateField(null=True, blank=True)
+    due_back = models.DateField(null=True, blank=True, verbose_name='To be available')
 
     LOAN_STATUS = (
         ('m', 'Maintenance'),
@@ -54,11 +59,14 @@ class BookInstance(models.Model):
         choices=LOAN_STATUS,
         blank=True,
         default='m',
-        help_text='Book availability'
+        help_text='Book availability',
+        verbose_name='Status'
     )
 
     class Meta:
         ordering = ['due_back']
+        verbose_name = 'Экземпляр'
+        verbose_name_plural = 'Экземпляры'
 
     def __str__(self):
         return f'{self.id} ({self.book.title})'
