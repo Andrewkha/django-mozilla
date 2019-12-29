@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Author, Book, BookInstance, Genre
+from django.conf import settings
 # Create your views here.
 
 
@@ -19,6 +20,7 @@ def index(request):
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
 
+    connection = settings.TEST
 
     context = {
         'num_books': num_books,
@@ -28,6 +30,7 @@ def index(request):
         'spec_genre': spec_genre,
         'spec_books': spec_books,
         'num_visits': num_visits,
+        'connection': connection
     }
 
     return render(request, 'index.html', context=context)
