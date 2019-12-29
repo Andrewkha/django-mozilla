@@ -7,7 +7,6 @@ from .models import Author, Book, BookInstance, Genre
 def index(request):
     num_books = Book.objects.all().count()
     num_instances = BookInstance.objects.all().count()
-
     num_instances_available = BookInstance.objects.filter(status__exact='a').count()
 
     # The 'all()' is implied by default.
@@ -17,6 +16,10 @@ def index(request):
     spec_genre = Genre.objects.filter(name__icontains='fiction').count()
     spec_books = Book.objects.filter(title__icontains='голова').count()
 
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
+
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
@@ -24,6 +27,7 @@ def index(request):
         'num_authors': num_authors,
         'spec_genre': spec_genre,
         'spec_books': spec_books,
+        'num_visits': num_visits,
     }
 
     return render(request, 'index.html', context=context)

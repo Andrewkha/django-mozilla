@@ -17,4 +17,6 @@
     <li><strong>Genres with fiction:</strong> {{ spec_genre }}</li>
     <li><strong>Books with голова:</strong> {{ spec_books }}</li>
   </ul>
+
+  <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
 {% endblock %}
