@@ -3,6 +3,9 @@
 {% block content %}
   <h1>Author List</h1>
   {% if author_list %}
+  {% if perms.catalog.can_mark_returned %}
+    <a href="{% url 'author_create' %}">Create an author</a>
+  {% endif %}
   <ul>
     {% for author in author_list %}
       <li>
@@ -14,7 +17,14 @@
           {% if author.date_of_death %}
             {{ author.date_of_death }}
           {% endif %}
-          )</a>
+          )
+        </a>
+        {% if perms.catalog.can_mark_returned %}
+          -----
+          <a href="{% url 'author_update' author.pk %}">Edit</a>
+          -----
+          <a href="{% url 'author_delete' author.pk %}">Delete</a>
+        {% endif %}
       </li>
       {% if forloop.last %}
         <p>-------------------------------------</p>
