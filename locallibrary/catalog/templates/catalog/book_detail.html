@@ -17,6 +17,9 @@
       <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
         {{ copy.get_status_display }}
       </p>
+      {% if copy.is_on_loan %}
+        <p><strong>Borrower:</strong> {{ copy.borrower }}</p>
+      {% endif %}
       {% if copy.status != 'a' %}
         <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
       {% endif %}
