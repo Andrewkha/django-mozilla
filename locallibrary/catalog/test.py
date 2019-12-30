@@ -1,6 +1,7 @@
 class A:
-    connection = 'connected'
+    connection = 'disconnected'
 
     def connect(self):
         return self.connection
 
+ldap = A()

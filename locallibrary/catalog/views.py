@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Author, Book, BookInstance, Genre
-from django.conf import settings
+from .test import ldap
 # Create your views here.
 
 
@@ -20,7 +20,7 @@ def index(request):
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
 
-    connection = settings.TEST
+    connection = ldap
 
     context = {
         'num_books': num_books,
