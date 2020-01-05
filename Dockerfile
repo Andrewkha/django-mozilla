@@ -1,2 +1,3 @@
 FROM ubuntu:18.04
-RUN sudo apt-get update && sudo apt-get upgrade -y && sudo apt get-install -y python3 mysql-server
+RUN apt-get update && apt-get upgrade -y
+RUN apt get-install -y python3 mysql-server
