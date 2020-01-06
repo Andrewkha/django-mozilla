@@ -7,4 +7,4 @@ RUN mysql -uroot <<< "CREATE USER 'admin'@'%' IDENTIFIED BY 'my-secret-pw'"
 RUN mysql -uroot <<< "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%'"
 RUN mysql -uroot <<< "FLUSH PRIVILEGES"
 
-mysql -uroot <<< "CREATE DATABASE library"
+RUN mysql -uroot <<< "CREATE DATABASE library"
