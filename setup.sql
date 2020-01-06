@@ -1,0 +1,4 @@
+CREATE USER 'admin'@'%' IDENTIFIED BY 'my-secret-pw';
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%';
+FLUSH PRIVILEGES;
+CREATE DATABASE library;
