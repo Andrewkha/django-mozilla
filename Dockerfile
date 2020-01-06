@@ -3,10 +3,10 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y mysql-server
 
 RUN sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
-RUN service mysql start
 
 COPY setup.sql /docker-entrypoint-initdb.d/
 
+RUN service mysql start
 RUN mysql < /docker-entrypoint-initdb.d/setup.sql
 
 EXPOSE 3306 33060
