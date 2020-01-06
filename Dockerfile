@@ -6,3 +6,7 @@ RUN sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/
 RUN service mysql start
 
 COPY setup.sql /docker-entrypoint-initdb.d/
+
+RUN mysql < /docker-entrypoint-initdb.d/setup.sql
+
+EXPOSE 3306 33060
