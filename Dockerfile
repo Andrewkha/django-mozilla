@@ -6,7 +6,7 @@ RUN sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/
 
 COPY setup.sql /docker-entrypoint-initdb.d/
 
-ENV MYSQL_ROOT_PASSWORD = "root"
+ENV MYSQL_ROOT_PASSWORD=root
 EXPOSE 3306 33060
 
 CMD ["mysqld"]
