@@ -8,5 +8,5 @@ COPY setup.sql /docker-entrypoint-initdb.d/
 
 EXPOSE 3306 33060
 
-CMD ["mysqld"]
+CMD ["service", "mysql", "start"]
 RUN mysql < /docker-entrypoint-initdb.d/setup.sql
